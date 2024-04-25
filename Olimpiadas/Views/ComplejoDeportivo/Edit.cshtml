@@ -1,0 +1,64 @@
+﻿@model Olimpiadas.Models.ComplejoDeportivoModel
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Movie</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ID" />
+            <div class="form-group">
+                <label asp-for="Nombre" class="control-label"></label>
+                <input asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Localizacion" class="control-label"></label>
+                <input asp-for="Localizacion" class="form-control" />
+                <span asp-validation-for="Localizacion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="JefeOrganizacion" class="control-label"></label>
+                <input asp-for="JefeOrganizacion" class="form-control" />
+                <span asp-validation-for="JefeOrganizacion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AreaTotalOcupada" class="control-label"></label>
+                <input asp-for="AreaTotalOcupada" class="form-control" />
+                <span asp-validation-for="AreaTotalOcupada" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SedeId" class="form-label mt-4">Tipo de Complejo</label>
+                <select class="form-select" asp-for="SedeId" asp-items="ViewBag.SedesOlimpicas">
+                    <option value="0">Seleccionar una Sede</option>
+                </select>
+                <input type="hidden" asp-for="SedeId" value="" />
+                <span asp-validation-for="SedeId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TipoComplejoId" class="form-label mt-4">Tipo de Complejo</label>
+                <select class="form-select" asp-for="TipoComplejoId" asp-items="ViewBag.TiposDeComplejo">
+                    <option value="0">Seleccionar un Tipo de Complejo</option>
+                </select>
+                <input type="hidden" asp-for="TipoComplejoId" value="" />
+                <span asp-validation-for="TipoComplejoId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Regresar</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

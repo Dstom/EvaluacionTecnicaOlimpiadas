@@ -23,11 +23,7 @@ namespace Olimpiadas.Infraestructura.Contextos
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.ApplyConfiguration(new AreaDeportivaConfiguracion());
-            modelBuilder.ApplyConfiguration(new ComisarioConfiguracion());
             modelBuilder.ApplyConfiguration(new ComplejoDeportivoConfiguracion());
-            modelBuilder.ApplyConfiguration(new EquipamientoConfiguracion());
-            modelBuilder.ApplyConfiguration(new EventoConfiguracion());
             modelBuilder.ApplyConfiguration(new SedeOlimpicaConfiguracion());
             modelBuilder.ApplyConfiguration(new TipoComplejoConfiguracion());
             modelBuilder.ApplyConfiguration(new UsuarioConfiguracion());

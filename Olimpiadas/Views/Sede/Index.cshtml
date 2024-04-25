@@ -1,0 +1,64 @@
+﻿@model Olimpiadas.Models.SedeViewModel
+@{
+    ViewData["Title"] = "Sedes Olimpicas";
+}
+
+<h1>Sedes Olimpicas</h1>
+
+<p>
+    <a asp-action="Create">Agregar Sede Olimpica</a>
+</p>
+<form asp-controller="Sede" asp-action="Index" method="get">
+    <p class="row">
+        <div class="col-3">
+            Nombre: <input type="text" class="form-control" asp-for="ParametroBusqueda" />
+            <input class="btn btn-primary" type="submit" value="Filter" />
+        </div>
+        
+    </p>
+</form>
+
+<table class="table table-hover table-responsive">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SedesOlimpicas[0].Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SedesOlimpicas[0].Presupuesto)
+            </th>         
+            <th>
+                @Html.DisplayNameFor(model => model.SedesOlimpicas[0].NumeroDeComplejos)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.SedesOlimpicas)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Presupuesto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumeroDeComplejos)
+                </td>
+                <td>
+                    <a class="btn btn-primary" asp-action="Edit" asp-controller="ComplejoDeportivo" asp-route-id="@item.ID">
+                        <i class="bi bi-pencil"></i>
+                    </a>
+                    <a class="btn btn-info" asp-action="Details" asp-controller="ComplejoDeportivo" asp-route-id="@item.ID">
+                        <i class="bi bi-eye"></i>
+                    </a>
+                    <form asp-action="Delete">
+                        <input type="hidden" value="@item.ID" name="id" />
+                        <input type="submit" value="Delete" class="btn btn-danger" />
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

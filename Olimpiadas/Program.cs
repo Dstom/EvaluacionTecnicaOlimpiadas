@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Olimpiadas.Dominio.Repositorios;
@@ -11,16 +12,24 @@ var configuration = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json")
                 .Build();
 var connectionString = configuration.GetSection("AppDb").Value;
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(option =>
+    {
+        option.LoginPath = new PathString("/Login");
+    });
 
 SqlConnectionStringBuilder connectionStringBuilder = new SqlConnectionStringBuilder();
 connectionStringBuilder.ConnectionString = connectionString;
 connectionStringBuilder.ApplicationName = "AplicacionOlimpiadas";
 
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
 builder.Services.AddDbContext<IContextoBase, Contexto>(opt =>
-    opt.UseSqlServer(connectionStringBuilder.ToString())
+    opt.UseLazyLoadingProxies().UseSqlServer(connectionStringBuilder.ToString())
 );
 
-builder.Services.AddTransient<IRepositorioGenerico, RepositorioGenerico>();
+builder.Services.AddScoped<IRepositorioGenerico, RepositorioGenerico>();
+builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
@@ -35,6 +44,7 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
+app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",

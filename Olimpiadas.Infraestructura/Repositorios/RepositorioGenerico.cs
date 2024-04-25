@@ -1,4 +1,5 @@
-﻿using Olimpiadas.Dominio.Repositorios;
+﻿using Microsoft.EntityFrameworkCore;
+using Olimpiadas.Dominio.Repositorios;
 using Olimpiadas.Infraestructura.Contextos;
 using System;
 using System.Collections.Generic;
@@ -18,10 +19,23 @@ namespace Olimpiadas.Infraestructura.Repositorios
             _contexto = contextoGeneral;
         }
 
+        public void Actualizar<T>(T entidad) where T : class
+        {
+            _contexto.Attach(entidad);
+            _contexto.Entry(entidad).State = EntityState.Modified;
+        }
+
         public void Adicionar<T>(T entidad) where T : class
         {
             _contexto.Set<T>().Add(entidad);
         }
+
+        public void Eliminar<T>(T entidad) where T : class
+        {
+            _contexto.Attach(entidad);
+            _contexto.Entry(entidad).State = EntityState.Deleted;
+        }
+
         public void GuardarCambios()
         {
             _contexto.SaveChanges();

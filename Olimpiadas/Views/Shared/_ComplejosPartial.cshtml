@@ -1,0 +1,67 @@
+﻿@model List<Olimpiadas.Models.ComplejoDeportivoModel>
+@{
+}
+
+<table class="table table-bordred table-striped table-responsive">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model[0].Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0].Localizacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0].JefeOrganizacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0].AreaTotalOcupada)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0].NombreSede)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0].NombreTipoComplejo)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Localizacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.JefeOrganizacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AreaTotalOcupada)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombreSede)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombreTipoComplejo)
+                </td>
+                <td>
+                    <a class="btn btn-primary" asp-action="Edit" asp-controller="ComplejoDeportivo" asp-route-id="@item.ID">
+                        <i class="bi bi-pencil"></i>
+                    </a>
+                    <a class="btn btn-info" asp-action="Details" asp-controller="ComplejoDeportivo" asp-route-id="@item.ID">
+                        <i class="bi bi-eye"></i></a>
+                    <form asp-action="Delete" asp-controller="ComplejoDeportivo">
+
+                        <input type="hidden" value="@item.ID" name="id" />
+                        <input type="submit" class="btn btn-danger" value="Delete" />
+                            
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

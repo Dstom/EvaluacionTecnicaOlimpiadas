@@ -19,6 +19,10 @@ namespace Olimpiadas.Infraestructura.MapeoEntidades
             builder.Property(s => s.ID).HasColumnName("ID");
             builder.Property(s => s.Nombre).HasColumnName("Nombre");
             builder.Property(s => s.Presupuesto).HasColumnName("Presupuesto");
+            builder.HasMany(s => s.ComplejosDeportivos)
+                       .WithOne(c => c.SedeOlimpica)
+                       .HasForeignKey(c => c.SedeId)
+                       .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

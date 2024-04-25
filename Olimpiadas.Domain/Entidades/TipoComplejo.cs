@@ -9,6 +9,6 @@ namespace Olimpiadas.Dominio.Entidades
     public class TipoComplejo
     {
         public int ID { get; set; }
-        public string Tipo { get; set; }
+        public string Tipo { get; set; }        
     }
 }

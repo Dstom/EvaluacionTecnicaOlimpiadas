@@ -14,7 +14,7 @@ namespace Olimpiadas.Dominio.Entidades
         public int NumParticipantes { get; set; }
         public int NumComisarios { get; set; }
         public ComplejoDeportivo ComplejoDeportivo { get; set; }
-        public virtual List<Comisario> Comisarios { get; set; }
-        public virtual List<Equipamiento> Equipamientos { get; set; }
+        public List<Comisario> Comisarios { get; set; }
+        public List<Equipamiento> Equipamientos { get; set; }
     }
 }

@@ -1,0 +1,28 @@
+﻿@model Olimpiadas.Models.ComplejoDeportivoViewModel
+@{
+
+    ViewData["Title"] = "Complejos Deportivos";
+}
+
+<h3>Complejos Deportivos</h3>
+
+<p>
+    <a asp-action="Create">Agregar Complejo Deportivo</a>
+</p>
+<form asp-controller="ComplejoDeportivo" asp-action="Index" method="get">
+    <p class="row">
+        <div class="col-3">
+            <select class="form-select w-" asp-for="TipoComplejo" asp-items="Model.TiposDeComplejos">
+                <option value="">
+                    Todos
+                </option>
+            </select>
+        </div>
+        <div class="col-3">
+            Title: <input class="form-control" type="text" asp-for="ParametroBusqueda" />
+            <input type="submit" class="btn btn-primary" value="Filter" />
+        </div>
+        
+    </p>
+</form>
+@await Html.PartialAsync("_ComplejosPartial",Model.ComplejoDeportivos)

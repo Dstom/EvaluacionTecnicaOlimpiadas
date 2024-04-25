@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace Olimpiadas.Infraestructura.MapeoEntidades
 {
-    public class TipoComplejoConfiguracion : IEntityTypeConfiguration<ComplejoDeportivo>
+    public class TipoComplejoConfiguracion : IEntityTypeConfiguration<TipoComplejo>
     {
-        public void Configure(EntityTypeBuilder<ComplejoDeportivo> builder)
+        public void Configure(EntityTypeBuilder<TipoComplejo> builder)
         {
             builder.ToTable("TipoComplejo");
             builder.HasKey(t => t.ID);

@@ -13,5 +13,7 @@ namespace Olimpiadas.Dominio.Repositorios
         IList<T> ObtenerPorExpresionLimite<T>(Expression<Func<T, bool>> filtro = null, string incluir = null, byte limite = 0) where T : class;
         void Adicionar<T>(T entidad) where T : class;
         void GuardarCambios();
+        void Actualizar<T>(T entidad) where T : class;
+        void Eliminar<T>(T entidad) where T : class;
     }
 }

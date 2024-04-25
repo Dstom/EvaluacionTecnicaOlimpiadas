@@ -21,8 +21,10 @@ namespace Olimpiadas.Infraestructura.MapeoEntidades
             builder.Property(c => c.Localizacion).HasColumnName("Localizacion");
             builder.Property(c => c.JefeOrganizacion).HasColumnName("JefeOrganizacion");
             builder.Property(c => c.AreaTotalOcupada).HasColumnName("AreaTotalOcupada");
-            //builder.Property(c => c.TipoComplejo_ID).HasColumnName("TipoComplejo_ID");
-            //builder.Property(c => c.SedeOlimpica_ID).HasColumnName("SedeOlimpica_ID");
+            builder.Property(c => c.TipoComplejoId).HasColumnName("TipoComplejo_ID");
+            builder.Property(c => c.SedeId).HasColumnName("SedeOlimpica_ID");
+            builder.HasOne(c => c.SedeOlimpica).WithMany().HasForeignKey(c => c.SedeId).OnDelete(DeleteBehavior.Cascade);
+            builder.HasOne(x => x.TipoComplejo).WithMany().HasForeignKey(x => x.TipoComplejoId);
         }
     }
 }
